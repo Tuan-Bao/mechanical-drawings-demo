@@ -1,0 +1,11 @@
+.venv
+.env
+__pycache__
+*.pyc
+*.sqlite3
+uploads/
+models/*.pt
+hftuner/
+frontend/node_modules
+frontend/.vite
+frontend/dist

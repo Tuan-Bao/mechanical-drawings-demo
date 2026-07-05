@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: mechanical-drawings-demo-api
+    runtime: python
+    plan: starter
+    buildCommand: bash scripts/render-build.sh
+    startCommand: uvicorn backend:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      # Neon — paste in Render Dashboard (postgresql+psycopg://...?sslmode=require)
+      - key: DATABASE_URL
+        sync: false
+      - key: FRONTEND_ORIGINS
+        sync: false
+      - key: PUBLIC_BASE_URL
+        sync: false
+      - key: UPLOAD_DIR
+        value: ./uploads
+      - key: YOLO_MODEL_REPO
+        value: Tuan-Bao/yolo-obb
+      - key: YOLO_MODEL_FILENAME
+        value: yolo26n_OPP.pt
+      - key: YOLO_CONFIDENCE
+        value: "0.35"
+      - key: PRELOAD_YOLO
+        value: "false"
+      - key: PRELOAD_DONUT
+        value: "false"
+      - key: DONUT_MODEL_PATH
+        value: Tuan-Bao/donut-finetuned-v2.2
+      - key: DONUT_MAX_LENGTH
+        value: "256"
+      - key: DONUT_TASK_TOKEN
+        value: "<parsing>"
+      - key: MAX_IMAGE_BYTES
+        value: "25165824"
+      - key: IMAGE_STORAGE_PROVIDER
+        value: cloudinary
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: CLOUDINARY_FOLDER
+        value: mechanical-drawings
+      - key: HF_TOKEN
+        sync: false
