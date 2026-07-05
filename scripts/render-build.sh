@@ -3,6 +3,12 @@ set -euo pipefail
 
 pip install --upgrade pip
 
+python --version
+if ! python -c 'import sys; assert sys.version_info[:2] == (3, 11), f"Need Python 3.11, got {sys.version}"'; then
+  echo "ERROR: Render must use Python 3.11 (set PYTHON_VERSION=3.11.9 in Dashboard)"
+  exit 1
+fi
+
 # CPU-only PyTorch (Render has no GPU; avoids huge CUDA wheels)
 pip install torch --index-url https://download.pytorch.org/whl/cpu
 

@@ -264,6 +264,7 @@ npm run preview
 | Lỗi | Cách xử lý |
 |---|---|
 | `No module named 'hftuner'` | Build thiếu `render-build.sh` / chưa clone hftuner |
+| `DonutProcessor` / `Could not import module` + Python 3.14 | Render → **PYTHON_VERSION=3.11.9**, commit `runtime.txt`, redeploy |
 | `TokenizersBackend does not exist` | `pip install "transformers>=5.3"` trên Render |
 | CORS | Sửa `FRONTEND_ORIGINS` khớp domain Vercel |
 | Ảnh history mất | Bật Cloudinary, không dùng `local` trên Render |
