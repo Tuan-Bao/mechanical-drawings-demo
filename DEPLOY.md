@@ -267,6 +267,7 @@ npm run preview
 | `DonutProcessor` / `Could not import module` | Thiếu **torchvision** — `pip install torch torchvision` (CPU wheel trên Render); redeploy |
 | `DonutProcessor` / Python 3.14 | Render → **PYTHON_VERSION=3.11.9**, commit `runtime.txt`, redeploy |
 | `TokenizersBackend does not exist` | `pip install "transformers>=5.3"` trên Render |
+| `No module named 'psycopg2'` | Neon URL thường là `postgresql://` — đổi thành `postgresql+psycopg://` hoặc redeploy bản mới (backend tự normalize) |
 | CORS | Sửa `FRONTEND_ORIGINS` khớp domain Vercel |
 | Ảnh history mất | Bật Cloudinary, không dùng `local` trên Render |
 | OOM / crash | Tăng RAM Render hoặc tắt preload, dùng plan lớn hơn |

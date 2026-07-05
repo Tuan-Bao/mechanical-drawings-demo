@@ -232,6 +232,7 @@ Backend cũng tự `CREATE TABLE` lúc startup (SQLAlchemy) nếu bảng chưa c
 |---|---|
 | `Could not connect to the backend` | Backend chưa chạy hoặc sai port |
 | YOLO/DONUT **Waiting** lâu | Lần đầu tải model từ HF — đợi hoặc xem `/api/health` → `load_error` |
+| `No module named 'psycopg2'` | `DATABASE_URL` phải dùng `postgresql+psycopg://` (Neon copy thường là `postgresql://` — code tự đổi sau khi redeploy) |
 | Lỗi kết nối PostgreSQL | Kiểm tra `DATABASE_URL`, Postgres đã start, database đã tạo |
 | `No module named 'psycopg'` | `pip install "psycopg[binary]>=3.2"` |
 | `DonutProcessor` / `Could not import module` | Cài **torchvision**: `pip install torch torchvision` |

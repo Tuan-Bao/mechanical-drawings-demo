@@ -48,7 +48,20 @@ MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", str(24 * 1024 * 1024)))
 IMAGE_STORAGE_PROVIDER = os.getenv("IMAGE_STORAGE_PROVIDER", "local").strip().lower()
 UPLOAD_DIR = Path(os.getenv("UPLOAD_DIR", str(DEFAULT_UPLOAD_DIR))).resolve()
 PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL", "").strip().rstrip("/")
-DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_DATABASE_URL)
+
+
+def _normalize_database_url(url: str) -> str:
+    """Neon/Render often provide postgres:// or postgresql://; we use psycopg v3."""
+    if url.startswith("sqlite"):
+        return url
+    if url.startswith("postgres://"):
+        return "postgresql+psycopg://" + url.removeprefix("postgres://")
+    if url.startswith("postgresql://"):
+        return "postgresql+psycopg://" + url.removeprefix("postgresql://")
+    return url
+
+
+DATABASE_URL = _normalize_database_url(os.getenv("DATABASE_URL", DEFAULT_DATABASE_URL))
 FRONTEND_ORIGINS = [
     origin.strip()
     for origin in os.getenv("FRONTEND_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
