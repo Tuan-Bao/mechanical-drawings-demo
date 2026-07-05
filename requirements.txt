@@ -5,8 +5,11 @@ pillow>=10,<13
 python-dotenv>=1.0,<2.0
 sqlalchemy>=2.0,<3.0
 psycopg[binary]>=3.2,<4.0
-# torch: installed separately in scripts/render-build.sh (CPU wheel on Render)
+# torch + torchvision: installed in scripts/render-build.sh (CPU wheels on Render)
+# Local: pip install torch torchvision  (or use CUDA wheels if you have a GPU)
 ultralytics>=8.3,<9.0
 transformers>=5.3,<6.0
 tokenizers>=0.22
 huggingface_hub>=1.0,<2.0
+sentencepiece>=0.2,<1.0
+numpy>=1.26,<3.0

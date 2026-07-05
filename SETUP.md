@@ -86,6 +86,7 @@ cd D:\DATN\demo
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
+pip install torch torchvision
 pip install -r requirements.txt
 ```
 
@@ -233,6 +234,7 @@ Backend cũng tự `CREATE TABLE` lúc startup (SQLAlchemy) nếu bảng chưa c
 | YOLO/DONUT **Waiting** lâu | Lần đầu tải model từ HF — đợi hoặc xem `/api/health` → `load_error` |
 | Lỗi kết nối PostgreSQL | Kiểm tra `DATABASE_URL`, Postgres đã start, database đã tạo |
 | `No module named 'psycopg'` | `pip install "psycopg[binary]>=3.2"` |
+| `DonutProcessor` / `Could not import module` | Cài **torchvision**: `pip install torch torchvision` |
 | `Tokenizer class TokenizersBackend does not exist` | Nâng `transformers` lên 5.x: `pip install "transformers>=5.3,<6.0"` |
 
 ---
